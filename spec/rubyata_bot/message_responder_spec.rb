@@ -5,7 +5,7 @@ describe RubyataBot::MessageResponder do
     let(:bot) { double(:bot, api: api) }
     let(:api) { double(:api) }
     let(:message) do
-      double(:message, chat: double(:chat, id: 100),
+      double(:message, id: 300, chat: double(:chat, id: 100),
              new_chat_members: [ double(:member, first_name: "A" * 100, last_name: "QQ", id: 200)]
             )
     end
@@ -13,8 +13,10 @@ describe RubyataBot::MessageResponder do
 
     it "should ban it" do
       allow(api).to receive(:kick_chat_member)
+      allow(api).to receive(:delete_message)
       responder.respond
       expect(api).to have_received(:kick_chat_member).with(chat_id: 100, user_id: 200).once
+      expect(api).to have_received(:delete_message).with(chat_id: 100, message_id: 300).once
     end
   end
 end
