@@ -11,6 +11,11 @@ group :development, :test do
   gem 'pry-byebug'
 end
 
+group :development do
+  gem 'rubocop'
+  gem 'rubycritic'
+end
+
 group :test do
   gem 'rspec', '~> 3.7.0'
 end

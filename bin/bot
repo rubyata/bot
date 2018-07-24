@@ -3,4 +3,4 @@
 
 require_relative '../config/boot'
 
-RubyataBot.run!
+RubyataBot.run
