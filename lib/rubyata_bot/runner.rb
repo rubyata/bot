@@ -3,10 +3,9 @@
 module RubyataBot
   # Just runner
   class Runner
-    extend Forwardable
-
     def run
-      bot = Telegram::Bot::Client.new(RubyataBot.config.token, logger: RubyataBot.config.logger)
+      config = RubyataBot.config
+      bot = Telegram::Bot::Client.new(config.token, logger: config.logger)
       bot.listen do |message|
         MessageResponder.new(api: bot.api, message: message).respond
       end
