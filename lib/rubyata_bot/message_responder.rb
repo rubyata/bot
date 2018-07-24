@@ -14,11 +14,15 @@ module RubyataBot
 
     def respond
       chinese_users = message.chinese_members
-      api.delete_message(chat_id: chat_id, message_id: message.id) \
-        if chinese_users.any?
+      begin
+        api.delete_message(chat_id: chat_id, message_id: message.message_id) \
+          if chinese_users.any?
 
-      chinese_users.each do |member|
-        api.kick_chat_member(chat_id: chat_id, user_id: member.id)
+        chinese_users.each do |member|
+          api.kick_chat_member(chat_id: chat_id, user_id: member.id)
+        end
+      rescue Telegram::Bot::Exceptions::ResponseError
+        false
       end
     end
   end
