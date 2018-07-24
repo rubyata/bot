@@ -2,12 +2,5 @@
 # frozen_string_literal: true
 
 require_relative '../config/boot'
-require 'telegram/bot'
 
-Telegram::Bot::Client.run(RubyataBot.config.token) do |bot|
-  bot.listen do |message|
-    RubyataBot.config.logger.debug "@#{message.from.username}: #{message.text}"
-
-    RubyataBot::MessageResponder.new(bot: bot, message: message).respond
-  end
-end
+RubyataBot.run!

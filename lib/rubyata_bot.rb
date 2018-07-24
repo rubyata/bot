@@ -12,5 +12,9 @@ module RubyataBot
     def configure
       yield config
     end
+
+    def run!
+      Runner.new.run!
+    end
   end
 end

@@ -5,6 +5,7 @@ $LOAD_PATH << ::File.expand_path('../../lib', __FILE__)
 require 'rubygems'
 require 'bundler/setup'
 require 'logger'
+require 'telegram/bot'
 require 'rubyata_bot'
 
 Bundler.require :default, RubyataBot::ENVIRONMENT
