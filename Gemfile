@@ -17,5 +17,6 @@ group :development do
 end
 
 group :test do
+  gem 'fabrication'
   gem 'rspec', '~> 3.7.0'
 end

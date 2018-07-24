@@ -5,14 +5,7 @@ require 'spec_helper'
 describe RubyataBot::MessageResponder do
   context 'when chinese spammer enters' do
     let(:api) { double(:api) }
-    let(:message) do
-      opts = {
-        chinese_members: [
-          double(:user, first_name: 'A' * 100, last_name: 'QQ', id: 200)
-        ], chat: double(:chat, id: 100), message_id: 300
-      }
-      double(:message, **opts)
-    end
+    let(:message) { Fabricate(:spammer_joined_message) }
     let(:responder) { described_class.new(api: api, message: message) }
 
     before do
@@ -22,13 +15,11 @@ describe RubyataBot::MessageResponder do
     end
 
     it 'should ban it' do
-      expect(api).to have_received(:kick_chat_member) \
-        .with(chat_id: 100, user_id: 200).once
+      expect(api).to have_received(:kick_chat_member).once
     end
 
     it 'should delete join message' do
-      expect(api).to have_received(:delete_message) \
-        .with(chat_id: 100, message_id: 300).once
+      expect(api).to have_received(:delete_message).once
     end
   end
 end
