@@ -3,12 +3,26 @@
 module RubyataBot
   # Just runner
   class Runner
+    attr_reader :bot, :config
+
+    def initialize
+      @config = RubyataBot.config
+      token = config.token
+      logger = config.logger
+      @bot = Telegram::Bot::Client.new(token, logger: logger)
+    end
+
     def run
-      config = RubyataBot.config
-      bot = Telegram::Bot::Client.new(config.token, logger: config.logger)
       bot.listen do |message|
-        MessageResponder.new(api: bot.api, message: message).respond
+        if message.text == '/ping'
+          api.send_message(chat_id: message.chat.id, text: 'pong')
+        end
+        MessageResponder.new(api: api, message: message).respond
       end
+    end
+
+    def api
+      @bot.api
     end
   end
 end

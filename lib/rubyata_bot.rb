@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'dry-configurable'
 
 # RubyataBot is used by telegram.me/rubyata chat for administrative tasks
