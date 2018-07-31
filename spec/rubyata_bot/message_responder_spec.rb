@@ -26,19 +26,15 @@ describe RubyataBot::MessageResponder do
 
     context 'when telegram returns exception' do
       before do
-        # we can not use rspec double here
-        # `raise_lifecycle_message': The use of doubles or partial doubles from
-        # rspec-mocks # outside of the per-test lifecycle is not supported.
-        # (RSpec::Mocks::OutsideOfExampleError)
         response = OpenStruct.new(body: 'ololo', status: 200,
                                   env: OpenStruct.new(url: 'ololo'))
         allow(api).to receive(:delete_message) \
           .and_raise(Telegram::Bot::Exceptions::ResponseError, response)
+        allow(api).to receive(:kick_chat_member)
       end
 
       it 'should ignore telegram response exception' do
         responder.respond
-        # expect { responder.respond }.not_to raise_error(StandardError)
       end
     end
   end
