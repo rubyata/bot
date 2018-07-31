@@ -14,11 +14,11 @@ module RubyataBot
 
     def run
       bot.listen do |message|
-        if message.text == '/ping'
-          api.send_message(chat_id: message.chat.id, text: 'pong')
-        end
         MessageResponder.new(api: api, message: message).respond
       end
+    rescue StandardError => error
+      Rollbar.error(error)
+      raise error
     end
 
     def api

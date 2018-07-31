@@ -5,6 +5,7 @@ source 'https://rubygems.org'
 ruby '2.5.1'
 
 gem 'dry-configurable'
+gem 'rollbar'
 gem 'telegram-bot-ruby', '~> 0.8.6'
 
 group :development, :test do

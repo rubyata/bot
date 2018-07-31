@@ -41,6 +41,7 @@ GEM
     launchy (2.4.3)
       addressable (~> 2.3)
     method_source (0.9.0)
+    multi_json (1.13.1)
     multipart-post (2.0.0)
     parallel (1.12.1)
     parser (2.5.1.2)
@@ -59,6 +60,8 @@ GEM
       codeclimate-engine-rb (~> 0.4.0)
       parser (>= 2.5.0.0, < 2.6)
       rainbow (>= 2.0, < 4.0)
+    rollbar (2.16.4)
+      multi_json
     rspec (3.7.0)
       rspec-core (~> 3.7.0)
       rspec-expectations (~> 3.7.0)
@@ -117,6 +120,7 @@ DEPENDENCIES
   dry-configurable
   fabrication
   pry-byebug
+  rollbar
   rspec (~> 3.7.0)
   rspec_junit_formatter
   rubocop
