@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 ENV['BOT_ENV'] ||= 'test'
+ENV['BOT_LOGFILE'] ||= '/dev/null'
+
 require File.expand_path('../config/boot', __dir__)
 
 RSpec.configure do |config|
