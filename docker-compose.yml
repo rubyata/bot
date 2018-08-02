@@ -1,7 +1,7 @@
 version: '3'
 services:
   bot:
-    image: kalys/rubyata-bot:latest
+    image: rubyata/bot:latest
     restart: always
     env_file:
       - .env
