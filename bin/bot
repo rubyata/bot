@@ -1,8 +1,12 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
+require 'bundler/setup'
+require_relative '../system/container'
 STDOUT.sync = true
 
-require_relative '../config/boot'
+env = ENV['BOT_ENV'] || 'development'
+Bundler.require(:default, env)
 
-RubyataBot.run
+App.finalize!
+App['rubyata_bot.runner'].run

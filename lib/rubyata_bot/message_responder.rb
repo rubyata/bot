@@ -1,28 +1,34 @@
 # frozen_string_literal: true
 
+require 'import'
+require 'rubyata_bot/telegram_entity_extensions/message'
+require 'rubyata_bot/telegram_entity_extensions/user'
+
 module RubyataBot
   # Handles messages
   class MessageResponder
-    using RubyataBot::TelegramEntityExtensions
-    attr_reader :api, :message, :chat_id, :logger
+    include Import['logger', 'telegram.bot', 'rollbar']
+    using TelegramEntityExtensions
+    attr_reader :message, :chat_id
 
-    def initialize(api:, message:, logger: RubyataBot.config.logger)
-      @api      = api
-      @message  = message
+    def initialize(args)
+      @message = args.delete(:message)
       @chat_id = @message.chat.id
-      @logger = logger
+      super(args)
     end
 
     def respond
       chinese_users = message.chinese_members
-      delete_spam_message if chinese_users.any?
 
+      delete_spam_message if chinese_users.any?
       kick_users(chinese_users)
-    rescue Telegram::Bot::Exceptions::ResponseError => error
-      logger.error(error)
     end
 
     private
+
+    def api
+      bot.api
+    end
 
     def delete_spam_message
       api_request do
@@ -33,8 +39,12 @@ module RubyataBot
     def api_request
       yield
     rescue Telegram::Bot::Exceptions::ResponseError => error
-      logger.error(error)
-      Rollbar.warning(error, message: message.to_compact_hash)
+      handle_error(error)
+    end
+
+    def handle_error(error)
+      logger.warning(error)
+      rollbar.warning(error, message: message.to_compact_hash)
     end
 
     def kick_users(users)
