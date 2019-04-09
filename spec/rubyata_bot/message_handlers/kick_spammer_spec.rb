@@ -2,16 +2,16 @@
 
 require 'spec_helper'
 
-describe RubyataBot::MessageResponder do
+describe RubyataBot::MessageHandlers::KickSpammer do
   let(:api) { double(:api) }
   let(:message) { Fabricate(:spammer_joined_message) }
-  let(:responder) { described_class.new(message: message) }
+  let(:message_handler) { described_class.new(message: message) }
 
   before do
     App.stub('telegram.bot', double(:bot, api: api))
     allow(api).to receive(:kick_chat_member)
     allow(api).to receive(:delete_message)
-    responder.respond
+    message_handler.perform
   end
 
   it 'should ban it' do

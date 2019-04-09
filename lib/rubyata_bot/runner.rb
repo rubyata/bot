@@ -9,7 +9,7 @@ module RubyataBot
 
     def run
       bot.listen do |message|
-        MessageResponder.new(message: message).respond
+        MessageHandlers.perform(message)
       end
     rescue StandardError => error
       rollbar.error(error)
