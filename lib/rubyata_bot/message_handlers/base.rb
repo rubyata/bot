@@ -28,7 +28,7 @@ module RubyataBot
       end
 
       def handle_error(error)
-        logger.warning(error)
+        logger.warn(error)
         rollbar.warning(error, message: message.to_compact_hash)
       end
     end
