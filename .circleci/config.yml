@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-       - image: ruby:2.5-alpine
+       - image: ruby:2.6-alpine
        # circleci pre-built images https://circleci.com/docs/2.0/circleci-images/
 
     working_directory: ~/repo
