@@ -2,7 +2,9 @@
 
 # doc: false
 class MyTelegramResponseError < Telegram::Bot::Exceptions::ResponseError
-  def initialize; end
+  def initialize
+    super('error')
+  end
 
   def to_s
     'error'

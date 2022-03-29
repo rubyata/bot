@@ -23,8 +23,8 @@ module RubyataBot
 
       def api_request
         yield
-      rescue Telegram::Bot::Exceptions::ResponseError => error
-        handle_error(error)
+      rescue Telegram::Bot::Exceptions::ResponseError => e
+        handle_error(e)
       end
 
       def handle_error(error)

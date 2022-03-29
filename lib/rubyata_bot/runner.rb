@@ -11,9 +11,9 @@ module RubyataBot
       bot.listen do |message|
         MessageHandlers.perform(message)
       end
-    rescue StandardError => error
-      rollbar.error(error)
-      raise error
+    rescue StandardError => e
+      rollbar.error(e)
+      raise e
     end
   end
 end
