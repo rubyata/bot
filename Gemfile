@@ -6,7 +6,7 @@ ruby '2.7.2'
 
 gem 'dry-system'
 gem 'rollbar'
-gem 'telegram-bot-ruby', '~> 0.8.6'
+gem 'telegram-bot-ruby'
 
 group :development, :test do
   gem 'dotenv'

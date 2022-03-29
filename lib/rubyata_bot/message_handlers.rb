@@ -6,6 +6,7 @@ module RubyataBot
     def self.perform(message)
       KickSpammer.new(message: message).perform
       RestrictNewUser.new(message: message).perform
+      DeleteJoined.new(message: message).perform
     end
   end
 end
