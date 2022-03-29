@@ -20,6 +20,6 @@ end
 
 group :test do
   gem 'fabrication'
-  gem 'rspec', '~> 3.7.0'
+  gem 'rspec'
   gem 'rspec_junit_formatter'
 end
