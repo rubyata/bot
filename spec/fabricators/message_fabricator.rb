@@ -2,7 +2,7 @@
 
 Fabricator(:message, class_name: 'Telegram::Bot::Types::Message') do
   message_id { sequence }
-  date { Date.new(2009,11,26).to_time.to_i }
+  date { Date.new(2009, 11, 26).to_time.to_i }
 end
 
 Fabricator(:spammer_joined_message, from: :message) do

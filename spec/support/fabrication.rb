@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class DryStructGenerator < Fabrication::Generator::Base
-  def self.supports?(klass)
-    return true
+  def self.supports?(_klass)
+    true
   end
 
   def build_instance
