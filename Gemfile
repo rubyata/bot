@@ -7,7 +7,6 @@ ruby '2.7.2'
 gem 'dry-system'
 gem 'rollbar'
 gem 'telegram-bot-ruby'
-gem 'faraday_middleware'
 
 group :development, :test do
   gem 'dotenv'

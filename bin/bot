@@ -2,7 +2,12 @@
 # frozen_string_literal: true
 
 require 'bundler/setup'
-require_relative '../system/container'
+
+$LOAD_PATH.unshift 'system'
+$LOAD_PATH.unshift 'lib'
+
+require 'container'
+
 $stdout.sync = true
 
 env = ENV['BOT_ENV'] || 'development'

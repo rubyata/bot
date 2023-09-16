@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-App.boot(:rollbar) do
-  init do
+App.register_provider(:rollbar) do
+  prepare do
     require 'rollbar'
 
     Rollbar.configure do |config|

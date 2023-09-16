@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
-require 'dry/system/container'
+require 'dry/system'
 
 # Container for app
 class App < Dry::System::Container
-  setting :token
+  use :zeitwerk
 
   configure do |config|
-    config.auto_register = %w[lib/rubyata_bot]
-    config.token = ENV['BOT_TOKEN']
+    # config.auto_register = %w[lib/rubyata_bot]
+    config.component_dirs.add 'lib'
   end
 
-  load_paths!('lib')
+  add_to_load_path!('lib')
 end

@@ -1,24 +1,30 @@
 # frozen_string_literal: true
 
 require 'import'
-require 'rubyata_bot/telegram_entity_extensions/message'
-require 'rubyata_bot/telegram_entity_extensions/user'
 require 'rubyata_bot/message_handlers/base'
 
 module RubyataBot
   module MessageHandlers
     # Handles messages
     class KickSpammer < Base
-      using TelegramEntityExtensions
-
       def perform
-        chinese_users = message.chinese_members
+        return unless message.respond_to?(:new_chat_members)
 
-        delete_spam_message if chinese_users.any?
-        kick_users(chinese_users)
+        spammers = qq_users(message)
+        delete_spam_message if spammers.any?
+        kick_users(spammers)
       end
 
       private
+
+      def qq_users(message)
+        users = Array(message.new_chat_members)
+
+        users.select do |user|
+          full_name = [user.first_name, user.last_name].join(' ')
+          full_name.size > 100 && full_name.include?('QQ')
+        end
+      end
 
       def delete_spam_message
         api_request do

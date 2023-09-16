@@ -4,7 +4,7 @@ require 'spec_helper'
 
 describe RubyataBot::MessageHandlers::KickSpammer do
   let(:api) { double(:api) }
-  let(:message) { Fabricate(:spammer_joined_message) }
+  let(:message) { Fabricate.build(:spammer_joined_message) }
   let(:message_handler) { described_class.new(message: message) }
 
   before do

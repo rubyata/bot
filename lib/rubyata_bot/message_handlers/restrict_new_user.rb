@@ -8,11 +8,13 @@ module RubyataBot
     # Bans users to read only
     class RestrictNewUser < Base
       def perform
+        return unless message.respond_to?(:new_chat_members)
+
         api_request do
-          message.new_chat_members.each do |member|
-            api.restrict_chat_member(
-              **restriction_options.merge(user_id: member.id)
-            )
+          new_members = Array(message.new_chat_members)
+
+          new_members.each do |member|
+            api.restrict_chat_member(**restriction_options.merge(user_id: member.id))
           end
         end
       end

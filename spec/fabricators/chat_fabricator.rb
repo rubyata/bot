@@ -2,4 +2,5 @@
 
 Fabricator(:chat, class_name: 'Telegram::Bot::Types::Chat') do
   id { sequence }
+  type { 'supergroup' }
 end

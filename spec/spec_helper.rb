@@ -6,10 +6,15 @@ ENV['BOT_LOGFILE'] ||= '/dev/null'
 require 'rubygems'
 require 'bundler'
 Bundler.require(:default, :test)
-require_relative '../system/container'
-require 'rubyata_bot'
+
+$LOAD_PATH.unshift 'system'
+$LOAD_PATH.unshift 'lib'
+
+require 'container'
+
 require 'dry/system/stubs'
 App.enable_stubs!
+
 App.finalize!
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].sort.each { |f| require f }
 
