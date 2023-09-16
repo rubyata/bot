@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-       - image: ruby:2.6-alpine
+       - image: ruby:2.7.2-alpine
        # circleci pre-built images https://circleci.com/docs/2.0/circleci-images/
 
     working_directory: ~/repo
@@ -21,6 +21,7 @@ jobs:
           name: install dependencies
           command: |
             apk --update add --virtual build-dependencies ruby-dev build-base
+            gem install bundler:2.3.4
             bundle install --jobs=4 --retry=3 --path vendor/bundle
 
       - save_cache:
