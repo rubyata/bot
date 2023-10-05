@@ -9,6 +9,7 @@ module RubyataBot
     class DeleteJoined < Base
       def perform
         return unless message.respond_to?(:new_chat_members)
+        return if message.new_chat_members.empty?
 
         return unless message.respond_to?(:message_id)
 
