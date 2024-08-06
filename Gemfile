@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-ruby '2.7.2'
+ruby '3.2.3'
 
 gem 'dry-system'
 gem 'rollbar'
@@ -10,7 +10,6 @@ gem 'telegram-bot-ruby'
 
 group :development, :test do
   gem 'dotenv'
-  gem 'pry-byebug'
 end
 
 group :development do

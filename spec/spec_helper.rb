@@ -4,8 +4,8 @@ ENV['BOT_ENV'] ||= 'test'
 ENV['BOT_LOGFILE'] ||= '/dev/null'
 
 require 'rubygems'
-require 'bundler'
-Bundler.require(:default, :test)
+require 'bundler/setup'
+require 'fabrication'
 
 $LOAD_PATH.unshift 'system'
 $LOAD_PATH.unshift 'lib'

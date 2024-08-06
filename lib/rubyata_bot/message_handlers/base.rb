@@ -9,10 +9,10 @@ module RubyataBot
       include Import['logger', 'telegram.bot', 'rollbar']
       attr_reader :message, :chat_id
 
-      def initialize(args)
+      def initialize(**args)
         @message = args.delete(:message)
         @chat_id = @message.chat.id
-        super(args)
+        super
       end
 
       private
