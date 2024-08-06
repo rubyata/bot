@@ -13,7 +13,7 @@
 
 #### Docker and docker-compose
 
-    docker build -t rubyata/bot:latest .
+    docker build -t rubyata/bot:latest --platform=linux/amd64 .
     docker-compose up -d
 
 ## Configuration
