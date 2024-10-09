@@ -1,4 +1,4 @@
-FROM ruby:3.2.3-alpine
+FROM ruby:3.3.4-alpine
 
 ADD Gemfile Gemfile.lock /app/
 RUN apk --update add --virtual build-dependencies ruby-dev build-base && \
