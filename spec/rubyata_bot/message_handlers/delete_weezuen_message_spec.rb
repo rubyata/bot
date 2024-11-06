@@ -35,4 +35,16 @@ describe RubyataBot::MessageHandlers::DeleteWeezuenMessage do
       expect(api).to have_received(:delete_message).once
     end
   end
+
+  context 'when message contains less than 6 emojis ' do
+    let(:message) do
+      Fabricate.build :message,
+        text: %Q(😋😉😌😚)
+    end
+
+    specify do
+      subject
+      expect(api).not_to have_received(:delete_message)
+    end
+  end
 end
