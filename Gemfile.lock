@@ -140,6 +140,9 @@ GEM
     thread_safe (0.3.6)
     tty-which (0.4.2)
     unicode-display_width (2.1.0)
+    unicode-emoji (4.0.0)
+      unicode-version (~> 1.0)
+    unicode-version (1.4.0)
     virtus (1.0.5)
       axiom-types (~> 0.1)
       coercible (~> 1.0)
@@ -160,6 +163,7 @@ DEPENDENCIES
   rubocop
   rubycritic
   telegram-bot-ruby
+  unicode-emoji
 
 RUBY VERSION
    ruby 3.3.4p94

@@ -7,6 +7,7 @@ ruby '3.3.4'
 gem 'dry-system'
 gem 'rollbar'
 gem 'telegram-bot-ruby'
+gem 'unicode-emoji'
 
 group :development, :test do
   gem 'dotenv'
