@@ -9,7 +9,7 @@ module RubyataBot
     # Handles messages
     class DeleteWeezuenMessage < Base
       def perform
-        return unless message.respond_to?(:text)
+        return unless message.respond_to?(:text) && !message.text.nil?
 
         if message.text.include?('weezuen') || message.text.scan(Unicode::Emoji::REGEX).size >= 6
           api_request do
